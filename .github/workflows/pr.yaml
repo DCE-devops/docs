@@ -15,6 +15,5 @@ jobs:
           name: devenv
 
       - name: Build mkdocs
-        shell: bash -c "nix develop --impure --accept-flake-config --command {0}"
         run: |
-          mkdocs build
+          nix develop --impure --accept-flake-config --command mkdocs build

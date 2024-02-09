@@ -21,6 +21,5 @@ jobs:
           name: devenv
 
       - name: Deploy mkdocs
-        shell: nix develop --impure --accept-flake-config --command {0}
         run: |
-          mkdocs gh-deploy
+          nix develop --impure --accept-flake-config --command mkdocs gh-deploy
