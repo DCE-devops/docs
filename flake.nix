@@ -23,7 +23,12 @@
       modules = [
         ({ pkgs, config, ... }:
           {
-            devcontainer.enable = true;
+            devcontainer = {
+              enable = true;
+              settings = {
+                updateContentCommand = null;
+              };
+            };
             packages = with pkgs; [
               mkdocs
             ];    
