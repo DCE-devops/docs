@@ -1,0 +1,19 @@
+name: Build mkdocs
+on:
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v23
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: cachix/cachix-action@v12
+        with:
+          name: devenv
+
+      - name: Build mkdocs
+        run: |
+          nix develop --impure --accept-flake-config --command mkdocs build
