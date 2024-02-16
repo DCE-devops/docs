@@ -20,22 +20,18 @@
   {
     devShells.${system}.default = devenv.lib.mkShell {
       inherit pkgs inputs;
-      modules = [
-        ({ pkgs, config, ... }:
-          {
-            devcontainer = {
-              enable = true;
-              settings = {
-                updateContentCommand = null;
-              };
-            };
-            packages = with pkgs; [
-              mkdocs
-            ];    
-            processes.mkdocs-serve.exec = "mkdocs serve";
-          }
-        )
-      ];
+      modules = [({ pkgs, config, ... }:
+        {
+          devcontainer.enable = true;
+          devcontainer.settings.updateContentCommand = null;
+
+          packages = with pkgs; [
+            mkdocs
+          ];    
+
+          processes.mkdocs-serve.exec = "mkdocs serve";
+        }
+      )];
     };
   };
 }
